@@ -2,6 +2,7 @@ import { Navigate, createBrowserRouter } from 'react-router-dom';
 import App from '@/app/App';
 import Home from '@/app/pages/operator/home/Home';
 import LayoutPage from '@/app/root/LayoutPage';
+import Sell from '@/app/pages/operator/sell/Sell';
 
 export const OBJ_ROUTING = {
   LOGIN: 'login',
@@ -34,7 +35,11 @@ export const router = createBrowserRouter([
       },
       {
         path: OBJ_ROUTING.SELL,
-        element: <div className="text-5xl text-pink-500">sell</div>,
+        element: (
+          <LayoutPage>
+            <Sell />
+          </LayoutPage>
+        ),
       },
       {
         path: OBJ_ROUTING.STORE,
