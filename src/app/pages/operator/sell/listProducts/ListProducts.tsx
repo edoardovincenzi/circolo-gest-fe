@@ -1,10 +1,10 @@
 import { Grid } from '@mui/material';
 import ProductCard from './ProductCard';
-import { useGetListProducts } from '@/app/api/useApi';
+import { useGetListProductDeatil } from '@/app/api/useApi';
 
 const ListProducts = () => {
-  const { isError, isLoading, data } = useGetListProducts();
-  console.log(isError, isLoading, data);
+  const { isError, isLoading, data } = useGetListProductDeatil();
+  console.log(data);
   return (
     <Grid
       className="overflow-y-auto"
