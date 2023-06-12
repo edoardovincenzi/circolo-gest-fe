@@ -10,6 +10,7 @@ export interface Category {
   orderTypeId: string;
   name: string;
   lastUpdate: Date | null;
+  selected: boolean;
 }
 
 export interface Product {
