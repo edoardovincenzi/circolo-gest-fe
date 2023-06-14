@@ -56,22 +56,27 @@ const checkIfCategoryIsAlreadyPresent = (
     return state;
   }, {});
 
-  return categories.reduce((state: any, category) => {
+  return categories.map((category) => {
+    const newCategory = new CategoryItem(category);
     if (objCategories.hasOwnProperty(category.orderTypeId)) {
-      return [
-        ...state,
-        {
-          ...category,
-          selected: objCategories[category.orderTypeId],
-        },
-      ];
+      newCategory.setSelected(objCategories[category.orderTypeId]);
     }
-    return [
-      ...state,
-      {
-        ...category,
-        selected: category?.selected ?? false,
-      },
-    ];
-  }, []);
+    return newCategory;
+  });
 };
+
+class CategoryItem {
+  orderTypeId: string;
+  name: string;
+  lastUpdate: Date | null;
+  selected: boolean;
+  constructor({ orderTypeId, name, lastUpdate, selected = false }: Category) {
+    this.orderTypeId = orderTypeId;
+    this.name = name;
+    this.lastUpdate = lastUpdate;
+    this.selected = selected;
+  }
+  setSelected(newSelectedValue: boolean) {
+    this.selected = newSelectedValue;
+  }
+}
