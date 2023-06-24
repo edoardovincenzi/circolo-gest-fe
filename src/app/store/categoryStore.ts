@@ -49,6 +49,7 @@ const checkIfCategoryIsAlreadyPresent = (
   state: CategoryStore,
   categories: Category[]
 ) => {
+  //creare un oggetto di supporto per non dover fare il ciclo ogni volta che non ha senso
   const objCategories = state.categories.reduce((state: any, current) => {
     if (!state[current.orderTypeId]) {
       return { ...state, [current.orderTypeId]: current.selected };

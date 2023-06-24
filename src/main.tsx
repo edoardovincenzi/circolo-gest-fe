@@ -11,6 +11,9 @@ import axios from 'axios';
 const queryClient = new QueryClient();
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
+//DA METTERE token
+const token = '12312sdad';
+axios.defaults.headers.common = { Authorization: `bearer ${token}` };
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

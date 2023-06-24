@@ -1,5 +1,5 @@
 export interface ResponseApi<T> {
-  data: T[];
+  data: T;
   message: null | string;
   statusCode: number;
   success: boolean;
@@ -29,4 +29,10 @@ export interface ProductDetail {
   priceLastUpdate: string;
   warehouseQuantity: number;
   warehouseLastUpdate: string;
+}
+
+export interface Login {
+  userId: string;
+  token: string;
+  refreshToken: string;
 }
