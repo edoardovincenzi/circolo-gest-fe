@@ -3,8 +3,15 @@ import { useLogin } from './api/useApi';
 import { OBJ_ROUTING } from '@/router';
 import { Pending } from '@mui/icons-material';
 import { Typography } from '@mui/material';
+import { Role } from './store/authenticationStore';
 
-export const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+export const ProtectedRoute = ({
+  children,
+  role,
+}: {
+  children: React.ReactNode;
+  role: Role;
+}) => {
   const { data, isError, isLoading } = useLogin();
   if (!data?.userId) {
     // user is not authenticated

@@ -25,7 +25,12 @@ export const getCategories = async (): Promise<Category[] | undefined> => {
 
 export const login = async (): Promise<Login | undefined> => {
   try {
-    const response = await axios.get<ResponseApi<Login>>('/order-types');
+    const response = await axios.post<ResponseApi<Login>>('/auth/login', {
+      username: 'testlogin3',
+      password: 'testlogin3',
+    });
+    const token = response.data.data.token;
+    axios.defaults.headers.common = { Authorization: `bearer ${token}` };
     return response.data.data;
   } catch (error) {
     console.log(error);

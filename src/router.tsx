@@ -3,6 +3,7 @@ import App from '@/app/App';
 import Home from '@/app/pages/operator/home/Home';
 import LayoutPage from '@/app/root/LayoutPage';
 import Sell from '@/app/pages/operator/sell/Sell';
+import Login from './app/pages/Login';
 
 export const OBJ_ROUTING = {
   LOGIN: 'login',
@@ -20,7 +21,11 @@ export const router = createBrowserRouter([
   },
   {
     path: OBJ_ROUTING.LOGIN,
-    element: <div className="text-5xl text-pink-500">login</div>,
+    element: (
+      <LayoutPage>
+        <Login />
+      </LayoutPage>
+    ),
   },
   {
     path: OBJ_ROUTING.OPERATOR,
