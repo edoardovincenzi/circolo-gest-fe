@@ -31,8 +31,14 @@ export interface ProductDetail {
   warehouseLastUpdate: string;
 }
 
-export interface Login {
+export interface DecodedToken {
   userId: string;
   token: string;
+  tokenDurationMs: number;
   refreshToken: string;
+  refreshTokenDurationMs: number;
+}
+export interface RefreshToken {
+  accessToken: 'string';
+  refreshToken: 'string';
 }

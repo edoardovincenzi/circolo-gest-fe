@@ -4,6 +4,7 @@ import Home from '@/app/pages/operator/home/Home';
 import LayoutPage from '@/app/root/LayoutPage';
 import Sell from '@/app/pages/operator/sell/Sell';
 import Login from './app/pages/Login';
+import { ProtectedRoute } from './app/ProtectedRoute';
 
 export const OBJ_ROUTING = {
   LOGIN: 'login',
@@ -34,7 +35,9 @@ export const router = createBrowserRouter([
         path: OBJ_ROUTING.HOME,
         element: (
           <LayoutPage>
-            <Home />
+            <ProtectedRoute role="OPERATOR">
+              <Home />
+            </ProtectedRoute>
           </LayoutPage>
         ),
       },
@@ -59,6 +62,6 @@ export const router = createBrowserRouter([
 
   {
     path: '*',
-    element: <Navigate to="/operator/home" replace />,
+    element: <Navigate to="/" replace />,
   },
 ]);

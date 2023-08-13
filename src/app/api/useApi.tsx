@@ -2,6 +2,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { getCategories, getListProductDetail, login } from './api';
 import { useAuthenticationStore } from '../store/authenticationStore';
 import { decodeToken } from 'react-jwt';
+import { DecodedToken } from '../types';
 
 export const useGetListProductDeatil = () => {
   const { isError, isLoading, data } = useQuery({
@@ -20,16 +21,18 @@ export const useGetCategories = () => {
 };
 
 export const useLogin = () => {
-  const { setLogin } = useAuthenticationStore((state) => state);
+  const { setLogin, setUserId } = useAuthenticationStore((state) => state);
   const {
     isError,
     isLoading,
     mutate: mutateLogin,
   } = useMutation(login, {
     onSuccess: (data) => {
-      if (data?.token) {
-        const myDecodedToken = decodeToken(data?.token);
+      if (data) {
+        const { token, userId } = data;
+        const myDecodedToken = decodeToken(token);
         console.log(myDecodedToken);
+        setUserId(userId);
         setLogin('OPERATOR');
       }
     },

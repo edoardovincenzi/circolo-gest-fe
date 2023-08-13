@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { useLogin } from '../api/useApi';
+import { Pending } from '@mui/icons-material';
 
 export default function Login() {
   const { mutateLogin, isError, isLoading } = useLogin();
@@ -18,6 +19,20 @@ export default function Login() {
     });
     mutateLogin();
   };
+  if (isLoading) {
+    return (
+      <div className="h-screen w-screen flex items-center justify-center">
+        <Pending />
+      </div>
+    );
+  }
+  if (isError) {
+    return (
+      <div className="h-screen w-screen flex items-center justify-center">
+        <Typography variant="h1">Errore di autenticazione</Typography>
+      </div>
+    );
+  }
 
   return (
     <Box className="flex flex-col items-center justify-center h-full">
