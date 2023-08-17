@@ -45,7 +45,9 @@ export const router = createBrowserRouter([
         path: OBJ_ROUTING.SELL,
         element: (
           <LayoutPage>
-            <Sell />
+            <ProtectedRoute role="OPERATOR">
+              <Sell />
+            </ProtectedRoute>
           </LayoutPage>
         ),
       },

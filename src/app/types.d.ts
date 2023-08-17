@@ -42,3 +42,11 @@ export interface RefreshToken {
   accessToken: 'string';
   refreshToken: 'string';
 }
+
+export interface TokenDecoded {
+  user_role_id: string;
+  access_token_duration: number;
+  sub: string;
+  iat: number;
+  exp: number;
+}
