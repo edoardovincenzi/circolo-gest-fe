@@ -6,7 +6,8 @@ import {
   RefreshToken,
   ResponseApi,
 } from '../types';
-import { decodeToken } from 'react-jwt';
+import { OBJ_ROUTING } from '@/router';
+import { NavigateFunction } from 'react-router-dom';
 
 export const getListProductDetail = async (): Promise<
   ProductDetail[] | undefined
@@ -51,7 +52,8 @@ export const login = async (): Promise<DecodedToken | undefined> => {
   }
 };
 export const postRefreshToken = async (
-  refreshToken: string
+  refreshToken: string,
+  navigate: NavigateFunction
 ): Promise<RefreshToken | undefined> => {
   try {
     const response = await axios.post<ResponseApi<RefreshToken>>(
@@ -66,6 +68,7 @@ export const postRefreshToken = async (
     axios.defaults.headers.common = { Authorization: `Bearer ${accessToken}` };
     return response.data.data;
   } catch (error) {
+    navigate(`/${OBJ_ROUTING.LOGIN}`);
     console.log(error);
   }
 };

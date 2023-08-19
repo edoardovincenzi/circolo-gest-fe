@@ -20,7 +20,7 @@ const ListProducts = () => {
         }
         return data;
       }),
-    [categoriesSelected]
+    [categoriesSelected, data]
   );
   return (
     <Grid
@@ -29,12 +29,11 @@ const ListProducts = () => {
       spacing={{ xs: 2, md: 3 }}
       columns={{ xs: 4, sm: 8, md: 12 }}
     >
-      {listProducts &&
-        listProducts.map((product) => (
-          <Grid item xs={2} sm={4} md={4} key={product.productId}>
-            <ProductCard product={product} />
-          </Grid>
-        ))}
+      {listProducts?.map((product) => (
+        <Grid item xs={2} sm={4} md={4} key={product.productId}>
+          <ProductCard product={product} />
+        </Grid>
+      ))}
       {isLoading ? <LoadingListProducts /> : null}
       {isError ? (
         <Typography variant="h2">

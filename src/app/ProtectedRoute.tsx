@@ -30,24 +30,22 @@ export const ProtectedRoute = ({
       if (token && refreshToken) {
         if (refreshToken && !checkExiredToken(refreshToken)) {
           axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
-          postRefreshToken(refreshToken)
-            .then((response) => {
-              if (response) {
-                const myDecodedToken = decodeToken(response.accessToken) as {
-                  user_role_id: string;
-                };
-                if (myDecodedToken?.user_role_id) {
-                  setUserId(myDecodedToken.user_role_id);
-                  setLogin('OPERATOR');
-                }
+          postRefreshToken(refreshToken, navigate).then((response) => {
+            if (response) {
+              const myDecodedToken = decodeToken(response.accessToken) as {
+                user_role_id: string;
+              };
+              if (myDecodedToken?.user_role_id) {
+                setUserId(myDecodedToken.user_role_id);
+                setLogin('OPERATOR');
               }
-            })
-            .catch(() => navigate(OBJ_ROUTING.LOGIN));
+            }
+          });
         } else {
-          navigate(OBJ_ROUTING.LOGIN);
+          navigate(`/${OBJ_ROUTING.LOGIN}`);
         }
       } else {
-        navigate(OBJ_ROUTING.LOGIN);
+        navigate(`/${OBJ_ROUTING.LOGIN}`);
       }
     }
   }, []);
