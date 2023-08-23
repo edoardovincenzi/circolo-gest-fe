@@ -7,7 +7,7 @@ export interface ResponseApi<T> {
 }
 
 export interface Category {
-  orderTypeId: string;
+  productTypeId: string;
   name: string;
   lastUpdate: Date | null;
   selected: boolean;

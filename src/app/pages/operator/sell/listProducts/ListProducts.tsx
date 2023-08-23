@@ -15,7 +15,7 @@ const ListProducts = () => {
       data.filter((product) => {
         if (categoriesSelected.length > 0) {
           return categoriesSelected.find(
-            (category) => category.orderTypeId === product.productTypeId
+            (category) => category.productTypeId === product.productTypeId
           );
         }
         return data;

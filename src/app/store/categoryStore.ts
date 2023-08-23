@@ -22,7 +22,7 @@ export const useCategoryStore = create<CategoryStore>()((set) => ({
   setCategorySelected: (orderTypeId: string) =>
     set((state: CategoryStore) => {
       const categoryToAddSelect = state.categories.find(
-        (category) => category.orderTypeId === orderTypeId
+        (category) => category.productTypeId === orderTypeId
       );
       if (categoryToAddSelect) {
         const categoryWithSelect: Category = {
@@ -30,7 +30,7 @@ export const useCategoryStore = create<CategoryStore>()((set) => ({
           selected: !categoryToAddSelect.selected,
         };
         const categorCategories = state.categories.filter(
-          (category) => category.orderTypeId !== orderTypeId
+          (category) => category.productTypeId !== orderTypeId
         );
         const newCategories = [categoryWithSelect, ...categorCategories];
         const categoriesSelected = newCategories.filter(
@@ -51,28 +51,28 @@ const checkIfCategoryIsAlreadyPresent = (
 ) => {
   //creare un oggetto di supporto per non dover fare il ciclo ogni volta che non ha senso
   const objCategories = state.categories.reduce((state: any, current) => {
-    if (!state[current.orderTypeId]) {
-      return { ...state, [current.orderTypeId]: current.selected };
+    if (!state[current.productTypeId]) {
+      return { ...state, [current.productTypeId]: current.selected };
     }
     return state;
   }, {});
 
   return categories.map((category) => {
     const newCategory = new CategoryItem(category);
-    if (objCategories.hasOwnProperty(category.orderTypeId)) {
-      newCategory.setSelected(objCategories[category.orderTypeId]);
+    if (objCategories.hasOwnProperty(category.productTypeId)) {
+      newCategory.setSelected(objCategories[category.productTypeId]);
     }
     return newCategory;
   });
 };
 
 class CategoryItem {
-  orderTypeId: string;
+  productTypeId: string;
   name: string;
   lastUpdate: Date | null;
   selected: boolean;
-  constructor({ orderTypeId, name, lastUpdate, selected = false }: Category) {
-    this.orderTypeId = orderTypeId;
+  constructor({ productTypeId, name, lastUpdate, selected = false }: Category) {
+    this.productTypeId = productTypeId;
     this.name = name;
     this.lastUpdate = lastUpdate;
     this.selected = selected;

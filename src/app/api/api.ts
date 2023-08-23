@@ -24,7 +24,7 @@ export const getListProductDetail = async (): Promise<
 
 export const getCategories = async (): Promise<Category[] | undefined> => {
   try {
-    const response = await axios.get<ResponseApi<Category[]>>('/order-types');
+    const response = await axios.get<ResponseApi<Category[]>>('/product-types');
     return response.data.data;
   } catch (error) {
     console.log(error);

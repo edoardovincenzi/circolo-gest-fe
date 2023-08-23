@@ -22,11 +22,11 @@ const Categories = () => {
         {categories.length > 0 &&
           categories.map((category) => (
             <Button
-              key={category.orderTypeId}
+              key={category.productTypeId}
               variant={category.selected ? 'contained' : 'outlined'}
               endIcon={category.selected && <CloseOutlinedIcon />}
               style={{ minWidth: 'min-content' }}
-              onClick={() => setCategorySelected(category.orderTypeId)}
+              onClick={() => setCategorySelected(category.productTypeId)}
             >
               {category.name}
             </Button>
