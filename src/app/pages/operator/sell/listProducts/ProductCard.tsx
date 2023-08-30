@@ -1,3 +1,4 @@
+import { useCartStore } from '@/app/store/cartStore';
 import { ProductDetail } from '@/app/types';
 import { Button, Paper, Typography } from '@mui/material';
 import { useState } from 'react';
@@ -7,6 +8,7 @@ const ProductCard = ({ product }: { product: ProductDetail }) => {
   const [productWarehouseQuantity, setProductWarehouseQuantity] =
     useState(warehouseQuantity);
   const [productQuantity, setProductQuantity] = useState(0);
+  const incrementCart = useCartStore((state) => state.incrementCart);
 
   const addQuantity = () => {
     if (productWarehouseQuantity > 0) {
@@ -18,6 +20,11 @@ const ProductCard = ({ product }: { product: ProductDetail }) => {
     if (productQuantity > 0) {
       setProductQuantity((old) => old - 1);
       setProductWarehouseQuantity((old) => old + 1);
+    }
+  };
+  const addCart = () => {
+    if (productQuantity > 0) {
+      incrementCart(productQuantity);
     }
   };
   return (
@@ -44,7 +51,12 @@ const ProductCard = ({ product }: { product: ProductDetail }) => {
             +
           </Button>
         </div>
-        <Button variant="outlined" className="!mt-1" onClick={reduceQuantity}>
+        <Button
+          variant="outlined"
+          disabled={productQuantity <= 0}
+          className="!mt-1"
+          onClick={addCart}
+        >
           Aggiungi al carrello
         </Button>
       </div>

@@ -30,6 +30,9 @@ export interface ProductDetail {
   warehouseQuantity: number;
   warehouseLastUpdate: string;
 }
+export interface ProductDetailWithQuantity extends ProductDetail {
+  quantity: number;
+}
 
 export interface DecodedToken {
   userId: string;
