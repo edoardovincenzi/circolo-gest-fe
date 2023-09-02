@@ -13,9 +13,7 @@ export const getListProductDetail = async (): Promise<
   ProductDetail[] | undefined
 > => {
   try {
-    const response = await axios.get<ResponseApi<ProductDetail[]>>(
-      '/products/detail'
-    );
+    const response = await axios.get<ResponseApi<ProductDetail[]>>('/products');
     return response.data.data;
   } catch (error) {
     console.log(error);
@@ -24,7 +22,9 @@ export const getListProductDetail = async (): Promise<
 
 export const getCategories = async (): Promise<Category[] | undefined> => {
   try {
-    const response = await axios.get<ResponseApi<Category[]>>('/product-types');
+    const response = await axios.get<ResponseApi<Category[]>>(
+      '/products/types'
+    );
     return response.data.data;
   } catch (error) {
     console.log(error);
